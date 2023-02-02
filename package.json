@@ -1,5 +1,6 @@
 {
   "name": "drag_drop",
+  "homepage": "https://reasonjeans.github.io/drag_and_drop/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
