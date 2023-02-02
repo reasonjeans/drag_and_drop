@@ -7,27 +7,31 @@ import Board from './components/Board';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  margin: 0 auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  padding: 100px;
   width: 100vw;
   height: 100vh;
 `;
 
+const Title = styled.div`
+  margin-bottom: 30px;
+  font-size: 30px;
+  font-weight: bold;
+  border-bottom: 3px solid #f5f6fa;
+  line-height: 2;
+`;
+
 const Boards = styled.div`
   display: flex;
-  justify-content: center;
   align-items: flex-start;
   width: 100%;
-  gap: 10px;
+  gap: 15px;
 `;
 
 function App() {
   const [toDos, setToDos] = useRecoilState(toDoState);
 
   const onDragEnd = (info: DropResult) => {
-    const { destination, draggableId, source } = info;
+    const { destination, source } = info;
 
     if (!destination) return;
 
@@ -67,6 +71,7 @@ function App() {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <Wrapper>
+        <Title>My List 🚀</Title>
         <Boards>
           {Object.keys(toDos).map((boardId) => (
             <Board boardId={boardId} key={boardId} toDos={toDos[boardId]} />
