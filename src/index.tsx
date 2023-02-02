@@ -4,7 +4,7 @@ import App from './App';
 
 import { RecoilRoot } from 'recoil';
 
-import { darkTheme, lightTheme } from './theme';
+import { theme } from './theme';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
@@ -72,7 +72,7 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <>
     <RecoilRoot>
-      <ThemeProvider theme={darkTheme}>
+      <ThemeProvider theme={theme}>
         <GlobalStyle />
         <App />
       </ThemeProvider>

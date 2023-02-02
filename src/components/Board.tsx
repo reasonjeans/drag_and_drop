@@ -9,20 +9,20 @@ import { IToDo, toDoState } from '../atoms';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
-  padding-top: 10px;
   display: flex;
   flex-direction: column;
   width: 300px;
   min-height: 300px;
   background: ${(props) => props.theme.boardColor};
-  border-radius: 5px;
+  border-radius: 10px;
 `;
 
 const Title = styled.p`
-  padding: 10px 0 15px 20px;
-  font-size: 18px;
+  padding: 20px 0 15px 20px;
+  font-size: 20px;
   font-weight: bold;
-  border-bottom: 1px solid #000;
+  color: #121212;
+  border-radius: 10px 10px 0 0;
 `;
 
 interface IAreaProps {
@@ -33,16 +33,24 @@ interface IAreaProps {
 const Area = styled.div<IAreaProps>`
   padding: 20px;
   flex-grow: 1;
-  background: ${(props) =>
-    props.isDraggingOver ? '#dfe6e9' : props.isDraggingFromThis ? '#b2bec3' : 'transparent'};
-  transition: background 0.2s ease-in;
 `;
 
 const Form = styled.form`
+  padding: 20px 20px 0;
   width: 100%;
 
   input {
     width: 100%;
+    background: transparent;
+    font-size: 17px;
+    font-weight: bold;
+    border: none;
+    border-bottom: 3px solid #000;
+    line-height: 1.5;
+
+    :focus {
+      outline: none;
+    }
   }
 `;
 
@@ -75,12 +83,12 @@ function Board({ toDos, boardId }: IBoardProps) {
 
   return (
     <Wrapper>
-      <Title>{boardId}</Title>
+      <Title style={{ background: boardId === 'Done 🙌' ? '#d1645f' : '#f3ec81' }}>{boardId}</Title>
       <Form onSubmit={handleSubmit(onValid)}>
         <input
           {...register('toDo', { required: true })}
           type="text"
-          placeholder={`Add task on ${boardId}`}
+          placeholder="Add task on"
         ></input>
       </Form>
       <Droppable droppableId={boardId}>
